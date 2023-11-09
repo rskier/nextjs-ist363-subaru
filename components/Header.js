@@ -11,13 +11,13 @@ const Header =()=>{
                     </Link>
                 </li>
                 <li>
-                    <Link href="/">
-                    About
+                    <Link href="/vehicles">
+                    Vehicles
                     </Link>
                 </li>
                 <li>
-                    <Link href="/">
-                     Contact   
+                    <Link href="/about">
+                     About   
                     </Link>
                 </li>
             </ul>
