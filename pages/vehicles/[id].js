@@ -1,28 +1,26 @@
 import Layout from '../../components/Layout';
-import { getVehicleBySlug, getAllVehicleSlugs } from '../../lib/api';
+import { getVehicleBySlug, getAllVehicleSlugs } from '../../lib/api1';
 
 //WATERFALL
 //1. getStaticPaths
 
 export async function getStaticPaths () {
-    const pathsArr = getAllVehicleSlugs();
-
-    const paths = pathsArr.map((slug) => {
+    const vehicles = await getAllVehicleSlugs();
+    const paths = vehicles.map((vehicle) => {
         return {
             params: {
                 id: slug
             }
         }
-    })
+    });
     return {
         paths,
         fallback: false
     }
 }
-
+//2. getStaticProps
 export async function getStaticProps ({ params }) {
-    const vehicleData = getVehicleBySlug(params.id);
-
+    const vehicleData = await getVehicleBySlug(params.id);
     return {
         props : {
             vehicleData
@@ -31,10 +29,9 @@ export async function getStaticProps ({ params }) {
 }
 
 const SingleVehiclePage =({ vehicleData }) => {
-    const { model, price } = vehicleData;
+    const { title, slug } = vehicleData;
     return <Layout>
-        <h1>{model}</h1>
-        <h2>${price}</h2>
+        <h1>{title}</h1>
     </Layout>
 }
 export default SingleVehiclePage;
