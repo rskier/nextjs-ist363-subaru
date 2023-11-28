@@ -1,5 +1,6 @@
+import Image from 'next/image';
 import Layout from '../../components/Layout';
-import { getVehicleBySlug, getAllVehicleSlugs } from '../../lib/api1';
+import { getVehicleBySlug, getAllVehicleSlugs } from '../../lib/api';
 
 //WATERFALL
 //1. getStaticPaths
@@ -7,6 +8,7 @@ import { getVehicleBySlug, getAllVehicleSlugs } from '../../lib/api1';
 export async function getStaticPaths () {
     const vehicles = await getAllVehicleSlugs();
     const paths = vehicles.map((vehicle) => {
+        const {slug} = vehicle.node;
         return {
             params: {
                 id: slug
@@ -29,9 +31,15 @@ export async function getStaticProps ({ params }) {
 }
 
 const SingleVehiclePage =({ vehicleData }) => {
-    const { title, slug } = vehicleData;
+    const { title, slug, featuredImage } = vehicleData;
     return <Layout>
         <h1>{title}</h1>
+        <Image 
+            src={featuredImage.node.sourceUrl}
+            alt={featuredImage.node.altText}
+            width={featuredImage.node.mediaDetails.width}
+            height={featuredImage.node.mediaDetails.height}
+        />
     </Layout>
 }
 export default SingleVehiclePage;
