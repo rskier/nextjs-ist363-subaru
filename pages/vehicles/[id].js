@@ -5,7 +5,7 @@ import { getVehicleBySlug, getAllVehicleSlugs } from '../../lib/api';
 //WATERFALL
 //1. getStaticPaths
 
-export async function getStaticPaths () {
+export async function getStaticPaths() {
     const vehicles = await getAllVehicleSlugs();
     const paths = vehicles.map((vehicle) => {
         const {slug} = vehicle.node;
@@ -21,7 +21,7 @@ export async function getStaticPaths () {
     }
 }
 //2. getStaticProps
-export async function getStaticProps ({ params }) {
+export async function getStaticProps({ params }) {
     const vehicleData = await getVehicleBySlug(params.id);
     return {
         props : {
@@ -42,4 +42,4 @@ const SingleVehiclePage =({ vehicleData }) => {
         />
     </Layout>
 }
-export default SingleVehiclePage;
+export default SingleVehiclePage;67
