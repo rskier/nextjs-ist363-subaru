@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Container from '../../components/container';
-import Grid from '../../components/Grid'
+import Grid from '../../components/Grid';
 import Layout from '../../components/Layout';
 import Image from 'next/image';
 import Link from 'next/link';
-import FilterBar from '../../components/FilterBar'
+import FilterBar from '../../components/FilterBar';
 import { getAllVehicles, getVehicleTypes } from '../../lib/api';
 
 export async function getStaticProps() {
@@ -50,7 +50,7 @@ const VehiclesPage = ({vehicles, vehicleTypes}) => {
             setActiveItem={setActiveVehicleType}
             />
             <Grid>
-                {vehicles.map((vehicle, index) => {
+                {filteredVehicles.map((vehicle, index) => {
                     const { title, slug, vehicleInformation} = vehicle.node;
                     const {trimLevels} = vehicleInformation;
                     return <article key={index}>
