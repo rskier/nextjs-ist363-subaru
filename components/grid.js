@@ -1,7 +1,7 @@
 import styles from './grid.module.scss'
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 const Grid = ({items}) => {
     const sectionVariants = {
@@ -24,9 +24,7 @@ const Grid = ({items}) => {
             y:0, 
             opacity:1
         }
-        }
     }
-
     return <motion.section 
         initial="closed"
         animate="open"
@@ -55,5 +53,6 @@ const Grid = ({items}) => {
                     </motion.article>
                 })}
     </motion.section>
+}
 
 export default Grid;
