@@ -1,7 +1,14 @@
-import styles from './grid.module.scss'
-import Link from 'next/link';
-import Image from 'next/image';
+//core imports
 import { motion } from "framer-motion";
+
+//custom components
+import Image from 'next/image';
+import Heading from './Heading';
+import Link from 'next/link';
+import Paragraph from './Paragraph';
+
+//styles
+import styles from './grid.module.scss'
 
 const Grid = ({items}) => {
     const sectionVariants = {
@@ -45,11 +52,18 @@ const Grid = ({items}) => {
                                 height={trimLevels[0].images.thumbnail.node.mediaDetails.height}
                             />
                         }
-                        <h3>{title}</h3>
-
-                        <p>
+                        <Heading 
+                        level={3} 
+                        color="black"
+                        >
+                            {title}
+                        </Heading>
+                        <Paragraph>
+                                Starting at $25,000
+                        </Paragraph>
+                        <Paragraph>
                             <Link href={`/vehicles/${slug}`}>Learn more</Link>
-                        </p>
+                        </Paragraph>
                     </motion.article>
                 })}
     </motion.section>

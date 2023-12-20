@@ -3,7 +3,7 @@ module.exports = {
       remotePatterns: [
         {
           protocol: 'http',
-          hostname: 'ist-363-subaru-2.local'
+          hostname: 'localhost'
         },
         {
           protocol: 'https',
