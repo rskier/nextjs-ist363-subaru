@@ -72,7 +72,7 @@
 	$alignments: left, center, right, justify;
 
 	@each $alignment in $alignments {
-		&.text-align-#{alignment} {
+		&.text-align-#{$alignment} {
 			text-align: $alignment;
 		}
 	}

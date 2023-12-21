@@ -60,5 +60,13 @@
             }
         }
     }
+    &__social {
+        //background-color: red;
+        li {
+            list-style: none;
+            padding: 0 .5rem;
+            margin: 0;
+        }
+    }
     
 }

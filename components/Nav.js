@@ -4,12 +4,16 @@ import { motion } from "framer-motion";
 //custom components
 import ButtonUI from './ButtonUI';
 import Link from 'next/link';
+import Row from './Row';
+import Image from 'next/image';
+import Heading from './Heading';
+import Paragraph from './Paragraph';
 
 //styles
 import styles from './nav.module.scss';
 
 //utility functions
-import {getDesktopNavItems, getMobileNavItems} from '../lib/nav';
+import {getDesktopNavItems, getMobileNavItems, getSocialNavItems} from '../lib/nav';
 
 const Nav = () => {
     return <nav className={styles.nav}>Nav goes here.</nav>
@@ -95,6 +99,35 @@ const Mobile = ({closeHandler}) => {
 }
 Nav.Mobile = Mobile;
 
-
+const Social = () => {
+    const navItems = getSocialNavItems();
+    return <nav className={styles.nav__social}>
+        <Heading 
+            level={3} 
+            color="black"
+            textAlign="center"
+            marginBottom={2}
+        >
+            Connect with us
+        </Heading>
+        <Row justifyContent="center">
+            {navItems.map((navItem, index)=> { 
+                const {src, alt} = navItem;
+                return <li>
+                    <Image                    
+                    src={src}
+                    alt={alt}
+                    width={24}
+                    height={32}
+                    />
+                </li>
+            })}
+        </Row>
+        <Paragraph>
+            Copyright 2023 Subaru.
+        </Paragraph>
+    </nav>
+}
+Nav.Social = Social;
 
 export default Nav;
