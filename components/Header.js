@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {AnimatePresence} from 'framer-motion';
 import Container from './Container';
 import ButtonUI from './ButtonUI';
-import Link from 'next/Link';
+import Link from 'next/link';
 import Logo from './Logo';
 import Nav from './Nav';
 import Row from './Row';
