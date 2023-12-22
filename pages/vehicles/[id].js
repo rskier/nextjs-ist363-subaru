@@ -1,6 +1,15 @@
-import Image from 'next/image';
+import Head from 'next/head';
 import Layout from '../../components/Layout';
+import Container from '../../components/Container';
+import Showcase from '../../components/Showcase';
+import TrimPicker from '../../components/TrimPicker';
+import ColorPicker from '../../components/ColorPicker';
+import CallToAction from '../../components/CallToAction';
+
+
 import { getVehicleBySlug, getAllVehicleSlugs } from '../../lib/api';
+import {getDrivingLocations} from '../../lib/locations';
+import { style } from 'motion';
 
 //WATERFALL
 //1. getStaticPaths
@@ -23,25 +32,43 @@ export async function getStaticPaths() {
 //2. getStaticProps
 export async function getStaticProps({ params }) {
     const vehicleData = await getVehicleBySlug(params.id);
+    const drivingLocations = getDrivingLocations();
     return {
         props : {
-            vehicleData
+            vehicleData,
+            drivingLocations
         }
     }
 }
 
-const SingleVehiclePage =({ vehicleData }) => {
-    const { title, slug, featuredImage } = vehicleData;
+const SingleVehiclePage =({ vehicleData, drivingLocations }) => {
+    const { title, slug, featuredImage, vehicleInformation } = vehicleData;
+    const {headline} = vehicleInformation.showcase;
+    const {trimLevels, vehicleColors} = vehicleInformation;
     return <Layout>
-        <h1>{title}</h1>
-        {featuredImage &&
-        <Image 
-            src={featuredImage.node.sourceUrl}
-            alt={featuredImage.node.altText}
-            width={featuredImage.node.mediaDetails.width}
-            height={featuredImage.node.mediaDetails.height}
+        <Head>
+            <title>{title} | Subaru USA</title>
+        </Head>
+        <Showcase 
+            subtitle={title}
+            title={headline}
+            featuredImage={featuredImage}
         />
-        }
+        <div id="main-content">
+            <Container>
+                <TrimPicker 
+                    trims={trimLevels}
+                    locations = {drivingLocations}
+                />
+                <ColorPicker 
+                    colors={vehicleColors}
+                />
+            </Container>
+        </div>
+        <CallToAction 
+            subtitle={title}
+        />
+
     </Layout>
 }
 export default SingleVehiclePage;

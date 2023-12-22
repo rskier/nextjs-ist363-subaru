@@ -10,6 +10,15 @@ import Paragraph from './Paragraph';
 //styles
 import styles from './grid.module.scss'
 
+const convertPriceToFormattedString = (price) => {
+    let priceArray = price.toString().split('');
+
+    for (let i = priceArray.length - 3; i>0; i -= 3) {
+        priceArray.splice(i, 0, ',');
+    }
+    return '$' + priceArray.join('');
+}
+
 const Grid = ({items}) => {
     const sectionVariants = {
         closed: {
@@ -43,6 +52,7 @@ const Grid = ({items}) => {
                     return <motion.article 
                         key={index}
                         variants={articleVariants}
+                        className={styles.grid__item}
                     >
                         {trimLevels && trimLevels[0].images.thumbnail &&
                             <Image 
@@ -58,9 +68,11 @@ const Grid = ({items}) => {
                         >
                             {title}
                         </Heading>
-                        <Paragraph>
-                                Starting at $25,000
-                        </Paragraph>
+                        {trimLevels[0].msrp &&
+                            <Paragraph>
+                                    Starting at {convertPriceToFormattedString(trimLevels[0].msrp)}
+                            </Paragraph>
+                        }
                         <Paragraph>
                             <Link href={`/vehicles/${slug}`}>Learn more</Link>
                         </Paragraph>
