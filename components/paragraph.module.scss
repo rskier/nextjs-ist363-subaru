@@ -1,4 +1,5 @@
 @use '../sass/abstracts/mixins';
+@use '../sass/abstracts/vars';
 
 .paragraph {
     font-size: 1rem;
@@ -6,7 +7,7 @@
     line-height: 1.2;
     color: black;
     a {
-        color: blue;
+        color: vars.$color__primary;
         font-weight: bold;
     }
     @include mixins.breakpoint(tablet) {

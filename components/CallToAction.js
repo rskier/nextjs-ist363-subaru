@@ -1,5 +1,3 @@
-import {scroller} from 'react-scroll';
-
 import Link from 'next/link';
 import style from './calltoaction.module.scss';
 import Heading from './Heading';

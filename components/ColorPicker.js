@@ -3,7 +3,6 @@ import Heading from './Heading';
 import Swatches from './Swatches';
 import Image from 'next/image';
 import {useState} from 'react';
-import { style } from 'motion';
 
 const ColorPicker = ({colors}) => {
     // [state variable, set state function]

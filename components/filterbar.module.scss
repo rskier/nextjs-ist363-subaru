@@ -1,3 +1,4 @@
+@use "../sass/abstracts/vars";
 .filterBar {
     //background-color: skyblue;
     &List {
@@ -8,7 +9,7 @@
         gap: 1rem;
         border-bottom: 1px solid black;
         &Item {
-            background-color: pink;
+           // background-color: pink;
             &Button {
                 background-color: white;
                 border: 0;
@@ -19,7 +20,7 @@
                 transition: all .5ss;
                 &.active {
                     //background-color: red;
-                    border-bottom: 5px solid blue;
+                    border-bottom: 5px solid vars.$color__primary;
                     font-weight: bold;
                 }
             }
